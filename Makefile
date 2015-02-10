@@ -1,21 +1,23 @@
-NAME = Crusher.app
+NAME = PNGCrusher.app
 
-SRC =	./mod_main.c\
-	./mod_copy.c\
-	./mod_error.c\
-	./mod_glitch.c\
+SRC =	./main_png.c\
+	./error_png.c\
+	./args_png.c\
+	./copy_png.c\
+	./glitch_png.c\
 
 OBJ = $(SRC:.c=.o)
 
 FLAG = -Wall -Werror -Wextra
 
-LIB = ./libft/*.c
+LIB =	./libft/*.c\
 
 all: $(NAME)
 $(NAME):
 	@make -C ./libft
 	@gcc $(FLAG) $(LIB) -c $(SRC)
-	@gcc $(LIB) $(OBJ) -o $(NAME)
+	@gcc $(LIB) -lpng $(OBJ) -o $(NAME)
+
 clean:
 	@rm -f $(OBJ)
 fclean:	clean
